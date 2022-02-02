@@ -1,0 +1,45 @@
+raw_base_file_path: "/Users/Veenu_Yadav/Desktop/@2021/Projects/DRL/OpsNextData"
+
+equp_list: ["CHE073", "PRE721", "QCE153", "PRE748", "PRE060"]
+
+tags:
+  tags_start_date : "2020-01-01"
+  tags_end_date : "2021-01-01"
+
+events:
+  events_start_date : "2020-01-01"
+  events_end_date : "2021-01-01"
+
+
+cpp_tags:
+  tags : ["Product Code", "Mixing 4 Started", "Batch Start/Stop", "Mixing 1 Completed", "Mixing 5 Started",
+          "Blender Speed", "Product Code", "Cycle Reset", "Blender Speed"]
+
+plant_code: [2003]
+
+
+prod_time_sched:
+  start_time_period_begin: "2021-03-08 21:59:00"
+  start_time_period_end: "2021-03-14 21:59:00"
+  end_time_period_begin: "2021-03-09 22:00:00"
+  end_time_period_end: "2021-03-15 22:00:00"
+
+prod_shift_sched:
+  shift_start_time_period_begin: "2021-03-08 21:59:00"
+  shift_start_time_period_end: "2021-03-15 14:00:00"
+  shift_end_time_period_begin: "2021-03-09 6:00:00"
+  shift_end_time_period_end: "2021-03-15 21:59:00"
+
+prod_sched_flags:
+  raw_material_maching:
+    vendor_matching: 1
+
+blister_packaging:
+  cleaning_type_A: 90
+  cleaning_type_B: 180
+  cleaning_type_C: 360
+
+bottle_packaging:
+  cleaning_type_A: 60
+  cleaning_type_B: 180
+  cleaning_type_C: 240

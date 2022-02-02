@@ -1,0 +1,176 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://kedro.readthedocs.io/en/stable/04_user_guide/04_data_catalog.html
+
+
+_csv: &csv
+  type: spark.SparkDataSet
+  file_format: csv
+  load_args:
+    inferSchema: True
+    header: True
+    multiLine: True
+
+_excel: &excel
+  type: pandas.ExcelDataSet
+
+## Adhoc Files
+
+## EMS data
+raw_ems_data:
+  <<: *csv
+  filepath: ${raw_base_file_path}/01_raw/raw_ems_data.csv
+## BreakDown data
+raw_breakdown_data:
+  <<: *csv
+  filepath: ${raw_base_file_path}/01_raw/raw_breakdown_data.csv
+## PMP data
+raw_pmp_data:
+  <<: *csv
+  filepath: ${raw_base_file_path}/01_raw/raw_pmp_data.csv
+
+raw_equip_room_data:
+  <<: *csv
+  filepath: ${raw_base_file_path}/01_raw/raw_equip_room_data.csv
+
+## CPP data
+raw_cpp_data:
+  <<: *csv
+  filepath: ${raw_base_file_path}/01_raw/cpv.tfct_cpp.csv
+
+
+
+## datalake tables
+
+##MES Data
+raw_mes_pasx_cpp_data:
+  <<: *csv
+  filepath: ${raw_base_file_path}/01_raw/raw.stg_mes_pasx_cpp.csv
+raw_mes_pasx_ipc_data:
+  <<: *csv
+  filepath: ${raw_base_file_path}/01_raw/raw.stg_mes_pasx_ipc.csv
+
+
+
+##CQA Data
+
+#SAP data
+raw_cqa_cma_data:
+  <<: *csv
+  filepath: ${raw_base_file_path}/01_raw/raw.raw_cqa_cma_cl.csv
+#Labware data
+raw_cqa_labware_cl_data:
+  <<: *csv
+  filepath: ${raw_base_file_path}/01_raw/raw.stg_cqa_labware_cl*.csv
+
+raw_tfct_cqa_data:
+  <<: *csv
+  filepath: ${raw_base_file_path}/01_raw/qcl.tfct_cqa.csv
+
+raw_cqa_labware_batch_cl_data:
+  <<: *csv
+  filepath: ${raw_base_file_path}/01_raw/raw.raw_cqa_labware_batch_cl.csv
+raw_cqa_labware_stability_cl_data:
+  <<: *csv
+  filepath: ${raw_base_file_path}/01_raw/raw.raw_cqa_labware_stability_cl.csv
+raw_empower_data:
+  <<: *csv
+  filepath: ${raw_base_file_path}/01_raw/raw_empower*.csv
+
+
+## Mapping Table
+raw_genealogy_data:
+  <<: *csv
+  filepath: ${raw_base_file_path}/01_raw/commondata.tfct_batchdetail.csv
+
+
+## HR Data
+raw_exit_emp_data:
+  <<: *excel
+  filepath: ${raw_base_file_path}/01_raw/raw_hr_data.xlsx
+  load_args:
+    header: 0
+    sheet_name: 'Exit Emp Data 0ct19'
+raw_active_emp_data:
+  <<: *excel
+  filepath: ${raw_base_file_path}/01_raw/raw_hr_data.xlsx
+  load_args:
+    header: 0
+    sheet_name: 'Active Emp list Data'
+raw_transfer_emp_data:
+  <<: *excel
+  filepath: ${raw_base_file_path}/01_raw/raw_hr_data.xlsx
+  load_args:
+    header: [0,1]
+    sheet_name: 'Transfer'
+raw_punchdetail_data:
+  <<: *csv
+  filepath: ${raw_base_file_path}/01_raw/mfg.tfct_punchdetail.csv
+## Attendance data
+raw_attendance_data:
+  <<: *excel
+  filepath: ${raw_base_file_path}/01_raw/01_raw_Attendance & working hours Oct19 to Oct20.xls
+  load_args:
+    header: 0
+    sheet_name: null
+
+
+## Invalid OOS data
+raw_invalid_oos_data:
+  <<: *excel
+  filepath: ${raw_base_file_path}/01_raw/raw_invalid_OOS_data.xlsx
+  load_args:
+    header: 0
+    usecols: ['Sl.No','OOS No.','Reported on', 'Status', 'Batch.No', 'Test', 'Market', 'IP/FP/STABILITY/RM/PM', 'Analyst Emp Code',
+              'Category','Laboratory error categorization', 'Date of Disposal', 'Phase', 'Validity' ]
+
+## OOT data
+raw_oot_data:
+  <<: *excel
+  filepath: ${raw_base_file_path}/01_raw/raw_OOT_data.xlsx
+  load_args:
+    header: 0
+
+## Invalid OOS OOT data
+raw_invalid_oos_oot_data:
+  <<: *csv
+  filepath: ${raw_base_file_path}/01_raw/qcl.tfct_qms.csv
+
+
+
+#### Production Scheduling
+raw_planned_orders_data:
+  <<: *excel
+  filepath: ${raw_base_file_path}/01_raw/Scheduling/RRP4_1.2.21_dump.xlsx
+  load_args:
+    header: 0
+    usecols: ['Product', '    Rec/ReqQty', 'Category', 'Rec/RqtEl.',   'BUn']
+
+
+raw_master_data:
+  <<: *excel
+  filepath: ${raw_base_file_path}/01_raw/Scheduling/Master_file.xlsx
+  load_args:
+    header: 0
+    usecols: ['FG CODE', 'Molecule', 'Pack type', 'Validated Line', 'Strength']
+
+raw_bom_data:
+  <<: *excel
+  filepath: ${raw_base_file_path}/01_raw/Scheduling/BOM.xlsx
+  load_args:
+    header: 0
+    usecols: ['Material', 'Alt BOM', '      Base Qty', 'Component', '  Component Qty']
+    sheet_name: 'BOM'
+
+raw_recipe_data:
+  <<: *excel
+  filepath: ${raw_base_file_path}/01_raw/Scheduling/FTO3-Recipes15-2021.xlsx
+  load_args:
+    header: 0
+    usecols: ['Material', 'Alternate BOM', 'Base Qty', 'Operation Desc', 'Std 1', 'Std 2']
+    sheet_name: 'FTO3-Recipes15Dec20V1'
+
+
+
+

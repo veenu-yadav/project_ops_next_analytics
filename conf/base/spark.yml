@@ -1,0 +1,2 @@
+spark.sql.legacy.timeParserPolicy: "LEGACY"
+spark.sql.session.timeZone: "UTC"

@@ -1,0 +1,211 @@
+# here you can define all your data sets by using simple yaml syntax.
+#
+# documentation for this file format can be found in "the data catalog"
+# link: https://kedro.readthedocs.io/en/stable/04_user_guide/04_data_catalog.html
+
+_spark: &spark
+  type: spark.SparkDataSet
+  file_format: parquet
+  save_args:
+    mode: overwrite
+
+_csv: &csv
+  type: spark.SparkDataSet
+  file_format: csv
+  save_args:
+    header: True
+
+_excel: &excel
+  type: pandas.ExcelDataSet
+  save_args:
+    index: False
+    header: True
+
+_append_excel: &append_excel
+  type: pandas.AppendableExcelDataSet
+  save_args:
+    index: False
+    header: True
+
+
+prm_hr_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/03_primary/prm_hr_data.parquet
+
+
+prm_batch_stage_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/03_primary/prm_batch_stage_data.parquet
+
+
+prm_quality_batch_final_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/03_primary/prm_quality_batch_final_data.parquet
+
+
+prm_quality_batch_stage_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/03_primary/prm_quality_batch_stage_data.parquet
+
+
+prm_equipment_details_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/03_primary/prm_equipment_details_data.parquet
+prm_events_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/03_primary/prm_events_data.parquet
+prm_tags_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/03_primary/prm_tags_data.parquet
+
+prm_test_chromatography_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/03_primary/prm_test_chromatography_data.parquet
+prm_stability_batch_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/03_primary/prm_stability_batch_data.parquet
+prm_test_stability_results_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/03_primary/prm_test_stability_results_data.parquet
+
+
+
+skus_data:
+  <<: *excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'SKUs'
+
+orders_data:
+  <<: *append_excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'Orders'
+  load_args:
+    sheet_name: 'Orders'
+
+frozen_data:
+  <<: *append_excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'Frozen orders'
+
+time_periods_data:
+  <<: *append_excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'Time periods'
+  load_args:
+    sheet_name: 'Time periods'
+
+reward_data:
+  <<: *append_excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'Reward'
+
+
+equipment_downtimes_data:
+  <<: *append_excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'Equipment downtimes'
+
+shifts_data:
+  <<: *append_excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'Shifts'
+  load_args:
+    sheet_name: 'Shifts'
+
+equipment_capability_data:
+  <<: *append_excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'Equipment capability'
+  load_args:
+    sheet_name: 'Equipment capability'
+
+equipment_first_availability_data:
+  <<: *append_excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'Equipment first availability'
+  load_args:
+    sheet_name: 'Equipment first availability'
+
+equipment_roles_data:
+  <<: *append_excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'Equipment roles'
+  load_args:
+    sheet_name: 'Equipment roles'
+
+production_time_data:
+  <<: *append_excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'Production time'
+  load_args:
+    sheet_name: 'Production time'
+
+cleanings_data:
+  <<: *append_excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'Cleanings'
+  load_args:
+    sheet_name: 'Cleanings'
+
+raw_material_leadtimes_data:
+  <<: *append_excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'Raw material leadtimes'
+  load_args:
+    sheet_name: 'Raw material leadtimes'
+
+raw_material_use_data:
+  <<: *append_excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'Raw material use'
+  load_args:
+    sheet_name: 'Raw material use'
+
+raw_material_matching_data:
+  <<: *append_excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'Raw material matching'
+  load_args:
+    sheet_name: 'Raw material matching'
+
+staff_skills_data:
+  <<: *append_excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'Staff skills'
+  load_args:
+    sheet_name: 'Staff skills'
+
+staff_availability_data:
+  <<: *append_excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'Staff availability'
+  load_args:
+    sheet_name: 'Staff availability'
+
+staff_changeover_matrix_data:
+  <<: *append_excel
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/input_processed.xlsx
+  save_args:
+    sheet_name: 'Changeover matrix'
+  load_args:
+    sheet_name: 'Changeover matrix'
+
+
+

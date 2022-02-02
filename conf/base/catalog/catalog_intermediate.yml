@@ -1,0 +1,144 @@
+# here you can define all your data sets by using simple yaml syntax.
+#
+# documentation for this file format can be found in "the data catalog"
+# link: https://kedro.readthedocs.io/en/stable/04_user_guide/04_data_catalog.html
+
+_spark: &spark
+  type: spark.SparkDataSet
+  file_format: parquet
+  save_args:
+    mode: overwrite
+
+_excel: &excel
+  type: pandas.ExcelDataSet
+  save_args:
+    index: False
+    header: True
+
+_append_excel: &append_excel
+  type: pandas.AppendableExcelDataSet
+  save_args:
+    index: False
+    header: True
+
+
+## Adhoc Files
+int_ems_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_ems_data.parquet
+int_breakdown_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_breakdown_data.parquet
+int_pmp_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_pmp_data.parquet
+int_equip_room_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_equip_room_data.parquet
+
+##MES Data
+int_mes_pasx_cpp_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_mes_pasx_cpp_data.parquet
+int_mes_pasx_equip_room_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_mes_pasx_equip_room_data.parquet
+int_mes_pasx_ipc_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_mes_pasx_ipc.parquet
+
+
+##CQA Data
+int_tfct_cqa_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_tfct_cqa_data.parquet
+int_cqa_cma_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_cqa_cma_data.parquet
+int_cqa_labware_cl_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_cqa_labware_cl_data.parquet
+int_cqa_labware_stability_cl_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_cqa_labware_stability_cl.parquet
+int_cqa_labware_batch_cl_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_cqa_labware_batch_cl.parquet
+
+## Mapping Table
+int_genealogy_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_genealogy_data.parquet
+
+## Mapping Table
+int_empower_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_empower_data.parquet
+
+
+## HR Data
+int_exit_emp_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_exit_emp_data.parquet
+int_active_emp_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_active_emp_data.parquet
+int_transfer_emp_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_transfer_emp_data.parquet
+int_punchdetail_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_punchdetail_data.parquet
+
+## Invalid OOS data
+int_invalid_oos_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_invalid_oos_data.parquet
+
+int_oot_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_oot_data.parquet
+
+#int_invalid_oos_oot_data:
+#  <<: *spark
+#  filepath: ${raw_base_file_path}/02_intermediate/int_invalid_oos_oot_data.parquet
+
+## Attendance data
+int_attendance_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_attendance_data.parquet
+
+int_cpp_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/int_cpp_data.parquet
+
+
+
+#### Production Scheduling
+#int_product_data:
+#  <<: *excel
+#  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/int_product_data.xlsx
+#  save_args:
+#    sheet_name: 'Sheet_name_1'
+#
+#int_master_data:
+#  <<: *append_excel
+#  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/int_master_data.xlsx
+#  save_args:
+#    sheet_name: 'Sheet_name_11'
+
+int_planned_orders_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/int_planned_orders_data.parquet
+
+int_master_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/int_master_data.parquet
+
+int_recipe_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/int_recipe_data.parquet
+
+int_bom_data:
+  <<: *spark
+  filepath: ${raw_base_file_path}/02_intermediate/Scheduling/int_bom_data.parquet
