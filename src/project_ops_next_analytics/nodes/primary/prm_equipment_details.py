@@ -155,7 +155,7 @@ def select_ems_data(ems_df, equip_room_df):
     )
 
     return add_prefix_to_colname(
-        ems_join_equipment, "ems_var_", ["ems_record_datetime", "ems_equp_id",]
+        ems_join_equipment, "ems_var_", ["ems_record_datetime", "ems_equp_id", ]
     )
 
 
@@ -262,7 +262,7 @@ def prm_create_equipment_details_data(
     cpp_sensor_end_date = param["cpp_sensor"]["cpp_data_end_date"]
     tag_list = param["cpp_tags"]["tags"]
 
-    ##  Generate minute level timeseries for a given date range for each equipment.
+    # Generate minute level timeseries for a given date range for each equipment.
     master_df = create_master_timeseries(
         spark,
         equp_list,
@@ -271,18 +271,18 @@ def prm_create_equipment_details_data(
         dt_col="master_record_datetime",
     )
 
-    ##  format cpp data
+    # format cpp data
     cpp_df = select_cpp_data(cpp_df, tag_list)
-    ##  format ems data
+    # format ems data
     ems_df = select_ems_data(ems_df, equip_room_df)
-    ##  format pmp data
+    # format pmp data
     pmp_df = select_pmp_data(pmp_df)
-    ##  format breakdown data
+    # format breakdown data
     breakdown_df = select_breakdown_data(breakdown_df)
-    ##  format ipc data
+    # format ipc data
     ipc_df = select_ipc_data(ipc_df)
 
-    ##  Join minute level time series data to cpp data
+    # Join minute level time series data to cpp data
     master_cpp_join = (
         master_df.join(
             cpp_df,
@@ -303,7 +303,7 @@ def prm_create_equipment_details_data(
         .drop("cpp_record_datetime", "cpp_equp_id")
     )
 
-    ##  Join cpp data to ems data
+    # Join cpp data to ems data
     master_cpp_ems_join = (
         master_cpp_join.join(
             ems_df,
@@ -330,7 +330,7 @@ def prm_create_equipment_details_data(
         )
         .drop("ems_record_datetime", "ems_equp_id")
     )
-    ##  Join cpp_ems data to pmp data
+    # Join cpp_ems data to pmp data
     master_cpp_ems_pmp_join = (
         master_cpp_ems_join.join(
             pmp_df,
@@ -358,7 +358,7 @@ def prm_create_equipment_details_data(
         .drop("pmp_record_datetime", "pmp_equp_id")
     )
 
-    ##  Join cpp_ems_pmp data to breakdown data
+    # Join cpp_ems_pmp data to breakdown data
     master_cpp_ems_pmp_breakdown_join = (
         master_cpp_ems_pmp_join.join(
             breakdown_df,
@@ -391,7 +391,7 @@ def prm_create_equipment_details_data(
         .drop("breakdown_equp_id")
     )
 
-    ##  Join cpp_ems_pmp data_breakdown to ipc data
+    # Join cpp_ems_pmp data_breakdown to ipc data
     master_cpp_ems_pmp_breakdown_ipc_join = (
         master_cpp_ems_pmp_breakdown_join.join(
             ipc_df,

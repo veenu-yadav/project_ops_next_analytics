@@ -1,4 +1,5 @@
 """Project settings."""
+from project_ops_next_analytics.custom_context import CustomContext
 from project_ops_next_analytics.hooks import ProjectHooks
 
 # Instantiate and list your project hooks here
@@ -22,7 +23,5 @@ HOOKS = (ProjectHooks(),)
 # Define the configuration folder. Defaults to `conf`
 # CONF_ROOT = "conf"
 
-
-from project_ops_next_analytics.custom_context import CustomContext
 
 CONTEXT_CLASS = CustomContext

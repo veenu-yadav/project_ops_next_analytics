@@ -71,6 +71,6 @@ def int_create_invalid_oos_data(pandas_df: sql.DataFrame) -> sql.DataFrame:
     spark_df = pandas_to_pyspark(pandas_df, outputschema)
     df = clean_csvdata(spark_df)
 
-    df = convert_to_date(df, {"date_of_disposal": "yyyy-MM-dd",},)
+    df = convert_to_date(df, {"date_of_disposal": "yyyy-MM-dd", },)
 
     return df

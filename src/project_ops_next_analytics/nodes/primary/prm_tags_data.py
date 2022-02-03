@@ -148,7 +148,7 @@ def select_ems_data(ems_df, equip_room_df):
     )
 
     return add_prefix_to_colname(
-        ems_join_equipment, "ems_var_", ["ems_record_datetime", "ems_equp_id",]
+        ems_join_equipment, "ems_var_", ["ems_record_datetime", "ems_equp_id", ]
     )
 
 
@@ -178,7 +178,7 @@ def prm_create_tags_data(
     cpp_tags_end_date = param["tags"]["tags_end_date"]
     tag_list = param["cpp_tags"]["tags"]
 
-    ##  Generate minute level timeseries for a given date range for each equipment.
+    # Generate minute level timeseries for a given date range for each equipment.
     master_df = create_master_timeseries(
         spark,
         equp_list,
@@ -187,12 +187,12 @@ def prm_create_tags_data(
         dt_col="master_record_datetime",
     )
 
-    ##  format cpp data
+    # format cpp data
     cpp_df = select_cpp_data(cpp_df, tag_list)
-    ##  format ems data
+    # format ems data
     ems_df = select_ems_data(ems_df, equip_room_df)
 
-    ##  Join minute level time series data to cpp data
+    # Join minute level time series data to cpp data
     master_cpp_join = (
         master_df.join(
             cpp_df,
@@ -213,7 +213,7 @@ def prm_create_tags_data(
         .drop("cpp_record_datetime", "cpp_equp_id")
     )
 
-    ##  Join cpp data to ems data
+    # Join cpp data to ems data
     master_cpp_ems_join = (
         master_cpp_join.join(
             ems_df,

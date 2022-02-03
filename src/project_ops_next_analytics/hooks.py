@@ -14,6 +14,7 @@ from kedro.pipeline import Pipeline
 from kedro.config import TemplatedConfigLoader
 import os
 
+
 class ProjectHooks:
 
     @hook_impl

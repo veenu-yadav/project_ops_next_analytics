@@ -155,7 +155,7 @@ def prm_create_events_data(
     events_start_date = param["events"]["events_start_date"]
     events_end_date = param["events"]["events_end_date"]
 
-    ##  Generate minute level timeseries for a given date range for each equipment.
+    # Generate minute level timeseries for a given date range for each equipment.
     master_df = create_master_timeseries(
         spark,
         equp_list,
@@ -164,14 +164,14 @@ def prm_create_events_data(
         dt_col="master_record_datetime",
     )
 
-    ##  format pmp data
+    # format pmp data
     pmp_df = select_pmp_data(pmp_df)
-    ##  format breakdown data
+    # format breakdown data
     breakdown_df = select_breakdown_data(breakdown_df)
-    ##  format ipc data
+    # format ipc data
     ipc_df = select_ipc_data(ipc_df)
 
-    ##  Join master data to pmp data
+    # Join master data to pmp data
     master_pmp_join = (
         master_df.join(
             pmp_df,
@@ -197,7 +197,7 @@ def prm_create_events_data(
         .drop("pmp_record_datetime", "pmp_equp_id")
     )
 
-    ##  Join pmp data to breakdown data
+    # Join pmp data to breakdown data
     master_pmp_breakdown_join = (
         master_pmp_join.join(
             breakdown_df,
@@ -227,7 +227,7 @@ def prm_create_events_data(
         .drop("breakdown_equp_id")
     )
 
-    ##  Join pmp_breakdown data to ipc data
+    # Join pmp_breakdown data to ipc data
     master_pmp_breakdown_ipc_join = (
         master_pmp_breakdown_join.join(
             ipc_df,
