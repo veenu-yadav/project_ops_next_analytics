@@ -2,7 +2,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to project project_ops_next_analytics's API docs!
+Welcome to project project_ops_next_analytics_glass's API docs!
 =============================================
 
 .. toctree::

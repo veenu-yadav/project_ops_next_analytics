@@ -38,8 +38,11 @@ from pyspark.sql import functions as F
 from pyspark.sql.window import Window
 from pyspark import sql
 from pyspark import SparkContext, SQLContext
+from project_ops_next_analytics.custom_context import CustomContext
 
-spark = SQLContext(SparkContext())
+
+##spark = SQLContext(SparkContext())
+spark = CustomContext
 
 
 def create_master_timeseries(spark, equp_list, range_list, interval, dt_col):

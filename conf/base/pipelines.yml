@@ -1,0 +1,8 @@
+default:
+  pipelines:
+    - de.pipeline
+
+de.pipeline:
+  nodes:
+    - node_create_breakdown_data
+    - node_create_cpp_data

@@ -14,7 +14,7 @@ known_third_party = "kedro"
 [tool.pytest.ini_options]
 addopts = """
 --cov-report term-missing \
---cov src/project_ops_next_analytics -ra"""
+--cov src/project_ops_next_analytics_glass -ra"""
 
 [tool.coverage.report]
 fail_under = 0
