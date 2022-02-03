@@ -72,8 +72,8 @@ def int_create_attendance_data(pandas_df: dict) -> sql.DataFrame:
 
     spark_df = pandas_to_pyspark(pandas_df, outputschema)
 
-    df = clean_csvdata(spark_df)
+    spark_df = clean_csvdata(spark_df)
 
-    df = convert_to_date(df, {"date": "dd/MM/yyyy", },)
+    spark_df = convert_to_date(spark_df, {"date": "dd/MM/yyyy", },)
 
-    return df
+    return spark_df

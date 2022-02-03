@@ -45,14 +45,14 @@ def int_create_cpp_data(spark_df: sql.DataFrame, param: Dict,) -> sql.DataFrame:
 
     """
     plant_code = param["plant_code"]
-    df = clean_csvdata(spark_df)
-    df = remove_pattern_from_column(df, "tfct_")
-    df = df.filter(F.col("cpp_plant_code").isin(plant_code))
-    df = convert_to_date(
-        df,
+    spark_df = clean_csvdata(spark_df)
+    spark_df = remove_pattern_from_column(spark_df, "tfct_")
+    spark_df = spark_df.filter(F.col("cpp_plant_code").isin(plant_code))
+    spark_df = convert_to_date(
+        spark_df,
         {
             "cpp_record_datetime": "yyyy-MM-dd HH:mm:ss",
             "cpp_last_mod_date": "yyyy-MM-dd HH:mm:ss",
         },
     )
-    return df
+    return spark_df
