@@ -34,8 +34,10 @@ from project_ops_next_analytics.utils.data_clean import clean_csvdata
 from project_ops_next_analytics.utils.de_utils import convert_to_date
 
 
-
-def int_create_cpp_data(spark_df: sql.DataFrame, param: Dict,) -> sql.DataFrame:
+def int_create_cpp_data(
+    spark_df: sql.DataFrame,
+    param: Dict,
+) -> sql.DataFrame:
     """
      This function reads CPP sensor data and perform cleaning, data type conversion on it.
     Args:

@@ -36,7 +36,9 @@ from project_ops_next_analytics.utils.data_clean import (
 from project_ops_next_analytics.custom_context import CustomContext
 
 
-def create_master_timeseries(custom_context:CustomContext, equp_list, range_list, interval, dt_col):
+def create_master_timeseries(
+    custom_context: CustomContext, equp_list, range_list, interval, dt_col
+):
     """
     This function generates minute level time series in a given date range for each equipment.
     Args:
@@ -51,7 +53,12 @@ def create_master_timeseries(custom_context:CustomContext, equp_list, range_list
     """
 
     spark = custom_context
-    master_dates = generate_dates(spark, range_list, interval, dt_col,)
+    master_dates = generate_dates(
+        spark,
+        range_list,
+        interval,
+        dt_col,
+    )
 
     master_equp = pd.DataFrame({"master_equp_id": equp_list})
     master_equp_df = spark.createDataFrame(master_equp)
@@ -96,7 +103,10 @@ def select_cpp_data(cpp_df, tag_list):
 
     cpp_df = (
         cpp_df.groupby(
-            "cpp_plant_code", "cpp_record_datetime", "cpp_batch_id", "cpp_equp_id",
+            "cpp_plant_code",
+            "cpp_record_datetime",
+            "cpp_batch_id",
+            "cpp_equp_id",
         )
         .pivot("cpp_tag_name")
         .agg(F.first("cpp_tag_value"))

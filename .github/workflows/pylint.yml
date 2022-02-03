@@ -20,4 +20,5 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files 'int_cpp_data.py')--errors-only
+        pyint --disable=all --enable=unused-import $(git ls-files '*.py')
+        black --diff --check $(git ls-files '*.py')

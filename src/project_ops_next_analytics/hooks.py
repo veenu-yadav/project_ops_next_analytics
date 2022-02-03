@@ -16,7 +16,6 @@ import os
 
 
 class ProjectHooks:
-
     @hook_impl
     def register_pipelines(self) -> Dict[str, Pipeline]:
         "Registers the pipelines with the KedroContext using glass."

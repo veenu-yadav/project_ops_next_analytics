@@ -60,5 +60,8 @@ def _ensure_local_is_in_path(conf_paths: Iterable[str]):
 
 def _get_connector_conf_paths(project_path: str, connector_glob: str):
     return [
-        *glob.glob(pathname=connector_glob.format(str(project_path)), recursive=True,)
+        *glob.glob(
+            pathname=connector_glob.format(str(project_path)),
+            recursive=True,
+        )
     ]
