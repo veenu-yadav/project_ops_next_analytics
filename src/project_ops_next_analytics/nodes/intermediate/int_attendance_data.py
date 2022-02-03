@@ -26,6 +26,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Intermediate layer node for CSR data"""
+import pandas as pd
+from pyspark import sql
+from pyspark.sql.types import StructType, StructField, StringType
 from project_ops_next_analytics.utils.de_utils import convert_to_date
 from project_ops_next_analytics.utils.data_clean import (
     clean_csvdata,
@@ -33,10 +36,6 @@ from project_ops_next_analytics.utils.data_clean import (
 )
 from project_ops_next_analytics.utils.de_utils import pandas_to_pyspark
 
-from pyspark import sql
-from pyspark.sql.types import StructType, StructField
-from pyspark.sql.types import StringType, IntegerType, DoubleType, LongType, DateType
-import pandas as pd
 
 
 def int_create_attendance_data(pandas_df: dict) -> sql.DataFrame:
@@ -48,9 +47,9 @@ def int_create_attendance_data(pandas_df: dict) -> sql.DataFrame:
     Returns: Cleaned attendance data
 
     """
-    df = pd.concat(pandas_df, ignore_index=True)
+    pandas_df = pd.concat(pandas_df, ignore_index=True)
 
-    pandas_df = clean_pandas_column_names(df)
+    pandas_df = clean_pandas_column_names(pandas_df)
 
     outputschema = StructType(
         [

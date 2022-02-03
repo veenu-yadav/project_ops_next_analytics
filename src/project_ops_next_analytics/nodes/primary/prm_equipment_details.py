@@ -25,34 +25,32 @@
 #
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from typing import Dict
 import pandas as pd
+from pyspark.sql import functions as F
 from project_ops_next_analytics.utils.de_utils import generate_dates
 from project_ops_next_analytics.utils.data_clean import (
     remove_duplicates,
     format_col_values,
     add_prefix_to_colname,
 )
-from pyspark.sql import functions as F
 from project_ops_next_analytics.custom_context import CustomContext
 
-spark = CustomContext
 
-
-def create_master_timeseries(spark, equp_list, range_list, interval, dt_col):
+def create_master_timeseries(custom_context:CustomContext, equp_list, range_list, interval, dt_col):
     """
     This function generates minute level time series in a given date range for each equipment.
     Args:
-        spark: spark session
+        custom_context: spark session.
         equp_list: list of equipments for which minute level time series has to be generated.
-        range_list: list containing start date and end date
-        interval: time interval between date series (60 for minute series)
-        dt_col: name of the outpt date column
+        range_list: list containing start date and end date.
+        interval: time interval between date series (60 for minute series).
+        dt_col: name of the outpt date column.
 
-    Returns:
-        minute level time series in a given date range for each equipment.
+    Returns: minute level time series in a given date range for each equipment.
 
     """
+
+    spark = custom_context
     master_dates = generate_dates(spark, range_list, interval, dt_col,)
 
     master_equp = pd.DataFrame({"master_equp_id": equp_list})
