@@ -4,5 +4,5 @@ default:
 
 de.pipeline:
   nodes:
-    - node_create_breakdown_data
+    - node_create_attendance_data
     - node_create_cpp_data

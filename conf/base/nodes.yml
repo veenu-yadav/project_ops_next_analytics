@@ -1,7 +1,7 @@
-node_create_breakdown_data:
-    func: project_ops_next_analytics.nodes.intermediate.int_breakdown_data.int_create_breakdown_data
-    inputs: raw_breakdown_data
-    outputs: int_breakdown_data
+node_create_attendance_data:
+    func: project_ops_next_analytics.nodes.intermediate.int_attendance_data.int_create_attendance_data
+    inputs: raw_attendance_data
+    outputs: int_attendance_data
 
 node_create_cpp_data:
     func: project_ops_next_analytics.nodes.intermediate.int_cpp_data.int_create_cpp_data
