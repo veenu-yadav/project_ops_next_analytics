@@ -26,7 +26,9 @@ jobs:
         pylint --disable=all --enable=unused-import $(git ls-files '*.py')
         black --diff --check $(git ls-files '*.py')
         isort $(git ls-files '*.py')
-        pytest $(git ls-files 'test_*.py')
+    - name: Run pytest
+      run: |
+         pytest $(git ls-files 'test_*.py')
 
 
 
