@@ -30,6 +30,7 @@ jobs:
         if: steps.cache-pipenv.outputs.cache-hit != 'true'
         run: |
           pipenv install --deploy --dev
+          pip install kedro
       - name: Run test suite
         run: |
           pipenv run test -v
