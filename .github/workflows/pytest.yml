@@ -26,11 +26,6 @@ jobs:
           path: ~/.local/share/virtualenvs
           key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
 
-      - name: Kedro
-        uses: WaylonWalker/kedro-action@2.0.0
-        with:
-          GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
-
       - name: Install dependencies
         if: steps.cache-pipenv.outputs.cache-hit != 'true'
         run: |
