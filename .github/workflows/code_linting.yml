@@ -20,10 +20,13 @@ jobs:
         pip install pylint==2.12.2
         pip install black==22.1.0
         pip install isort==5.10.1
+        pip install pytest==7.0.0
     - name: Analysing the code with pylint & black
       run: |
         pylint --disable=all --enable=unused-import $(git ls-files '*.py')
         black --diff --check $(git ls-files '*.py')
         isort $(git ls-files '*.py')
+        pytest $(git ls-files 'test_*.py')
+
 
 
