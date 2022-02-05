@@ -1,3 +1,10 @@
+import os
+import re
+import sys
+
+import numpy
+import pandas
+
 a = 9
 b = 10
 
