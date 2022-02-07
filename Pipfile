@@ -6,7 +6,8 @@ name = "pypi"
 [packages]
 
 [dev-packages]
-pytest = "*"
+pytest = "7.0.0"
+kedro = "0.17.6"
 
 [requires]
 

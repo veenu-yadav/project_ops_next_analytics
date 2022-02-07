@@ -22,9 +22,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
           pipenv install --deploy --dev
-          pip install kedro==0.17.6
       - name: Run test suite
         run: |
           pipenv run test -v
