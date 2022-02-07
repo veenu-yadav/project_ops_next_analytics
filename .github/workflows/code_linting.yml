@@ -21,4 +21,3 @@ jobs:
          pytest $(git ls-files 'test_*.py')
 
 
-
