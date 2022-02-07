@@ -5,9 +5,9 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
     steps:
-    - uses: actions/checkout@v2
+    - name: Check out repository code
+      uses: actions/checkout@v2
     - name: Install dependencies
       run: |
         pip install -r src/requirements.txt
