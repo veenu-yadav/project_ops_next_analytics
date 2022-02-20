@@ -1,0 +1,16 @@
+name: Linting
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        pip install -r src/requirements.txt
+    - name: Make lint
+      run: |
+        make lint
